@@ -19,7 +19,7 @@ async def process_question(message: Message, state: FSMContext):
     async with state.proxy() as data:
         data['question'] = message.text
 
-    await message.answer('Make sure everythong is correct.', reply_markup=submit_markup())
+    await message.answer('Make sure everything is correct.', reply_markup=submit_markup())
     await SosState.next()
 
 

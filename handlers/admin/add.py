@@ -15,7 +15,7 @@ category_cb = CallbackData('category', 'id', 'action')
 product_cb = CallbackData('product', 'id', 'action')
 
 add_product = '➕ Add product'
-delete_category = '🗑️ Delet a category'
+delete_category = '🗑️ Delete a category'
 
 
 @dp.message_handler(IsAdmin(), text=settings)
@@ -55,7 +55,7 @@ async def category_callback_handler(query: CallbackQuery, callback_data: dict, s
 @dp.callback_query_handler(IsAdmin(), text='add_category')
 async def add_category_callback_handler(query: CallbackQuery):
     await query.message.delete()
-    await query.message.answer('What\'s the category name?')
+    await query.message.answer('What\'s the category\'s name?')
     await CategoryState.title.set()
 
 
@@ -104,7 +104,7 @@ async def process_add_product(message: Message):
 @dp.message_handler(IsAdmin(), text=cancel_message, state=ProductState.title)
 async def process_cancel(message: Message, state: FSMContext):
 
-    await message.answer('Okey, canceled!', reply_markup=ReplyKeyboardRemove())
+    await message.answer('Okay, canceled!', reply_markup=ReplyKeyboardRemove())
     await state.finish()
 
     await process_settings(message)

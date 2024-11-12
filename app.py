@@ -25,7 +25,7 @@ async def cmd_start(message: types.Message):
 
     await message.answer('''Hi! 👋
 
-🤖 I'm a marketplace bot to by products from any category.
+🤖 I'm a marketplace bot to buy products from any category.
     
 🛍️ To access the catalog and see the products use /menu command.
 

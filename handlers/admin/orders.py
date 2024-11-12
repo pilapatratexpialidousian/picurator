@@ -9,7 +9,7 @@ async def process_orders(message: Message):
     
     orders = db.fetchall('SELECT * FROM orders')
     
-    if len(orders) == 0: await message.answer('You don\t have active orders.')
+    if len(orders) == 0: await message.answer('You don\'t have active orders.')
     else: await order_answer(message, orders)
 
 async def order_answer(message, orders):
