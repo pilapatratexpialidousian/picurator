@@ -12,8 +12,8 @@ filters.setup(dp)
 
 WEBAPP_HOST = "0.0.0.0"
 WEBAPP_PORT = int(os.environ.get("PORT", 5000))
-user_message = 'Пользователь'
-admin_message = 'Админ'
+user_message = 'User'
+admin_message = 'Admin'
 
 
 @dp.message_handler(commands='start')
@@ -23,17 +23,17 @@ async def cmd_start(message: types.Message):
 
     markup.row(user_message, admin_message)
 
-    await message.answer('''Привет! 👋
+    await message.answer('''Hi! 👋
 
-🤖 Я бот-магазин по подаже товаров любой категории.
+🤖 I'm a marketplace bot to buy products from any category.
     
-🛍️ Чтобы перейти в каталог и выбрать приглянувшиеся товары возпользуйтесь командой /menu.
+🛍️ To access the catalog and see the products use /menu command.
 
-💰 Пополнить счет можно через Яндекс.кассу, Сбербанк или Qiwi.
+💰 For deposits you can use Yandex, Sber and Qivi   .
 
-❓ Возникли вопросы? Не проблема! Команда /sos поможет связаться с админами, которые постараются как можно быстрее откликнуться.
+❓ Have questions? Not a problem! /sos command will help you to cantact the admins.
 
-🤝 Заказать похожего бота? Свяжитесь с разработчиком <a href="https://t.me/NikolaySimakov">Nikolay Simakov</a>, он не кусается)))
+🤝 Want to order a similar bot? Contact the developer <a href="https://t.me/NikolaySimakov">Nikolay Simakov</a>, he doesn't bite)))
     ''', reply_markup=markup)
 
 
@@ -44,7 +44,7 @@ async def user_mode(message: types.Message):
     if cid in config.ADMINS:
         config.ADMINS.remove(cid)
 
-    await message.answer('Включен пользовательский режим.', reply_markup=ReplyKeyboardRemove())
+    await message.answer('User mode is on.', reply_markup=ReplyKeyboardRemove())
 
 
 @dp.message_handler(text=admin_message)
@@ -54,7 +54,7 @@ async def admin_mode(message: types.Message):
     if cid not in config.ADMINS:
         config.ADMINS.append(cid)
 
-    await message.answer('Включен админский режим.', reply_markup=ReplyKeyboardRemove())
+    await message.answer('Admin mode is on.', reply_markup=ReplyKeyboardRemove())
 
 
 async def on_startup(dp):
